@@ -8,7 +8,6 @@ module.exports = express
     try {
       const slug = req.params.slug
       res.json(await Page.findBySlug(slug))
-      res.send('Hallo wereld')
     } catch (err) {
       next(err)
     }
