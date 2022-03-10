@@ -6,7 +6,7 @@ const faq = function (faq) {
     this.answer = faq.answer
 }
 
-faq.getAll() = async function () {
+faq.getAll = async function () {
     const rows = await db.query(`SELECT * FROM faq`)
     return {
         data: helper.emtpryOrRows(rows)
