@@ -9,7 +9,7 @@ const faq = function (faq) {
 faq.getAll = async function () {
     const rows = await db.query(`SELECT * FROM faq`)
     return {
-        data: helper.emtpryOrRows(rows)
+        data: helper.emptyOrRows(rows)
     }
 }
 

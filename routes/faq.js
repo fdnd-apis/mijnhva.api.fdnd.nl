@@ -1,5 +1,4 @@
 const express = require('express')
-const epxress = require('express')
 const Faq = require('../models/faq.model')
 
 module.exports = express
