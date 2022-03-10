@@ -15,4 +15,26 @@ section.getAll = async function() {
   }
 }
 
+section.create = async function(section) {
+  const rows = await db.query(
+    `INSERT INTO section SET title = ?, body = ?, page_id = ?`,
+    prepareForInsert(section)
+  )
+  return {
+    data: [section],
+    meta: {
+      affectedRows: rows.affectedRows,
+      changedRows: rows.changedRows,
+    }
+  }
+}
+
 module.exports = section
+
+function prepareForInsert(section) {
+  return [
+    section.title,
+    section.body,
+    section.page_id
+  ]
+}
