@@ -1,5 +1,5 @@
 const express = require('express')
-const Tip = require('../models/tips.model')
+const Tip = require('../models/tip.model')
 
 module.exports = express
     .Router()

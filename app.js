@@ -4,7 +4,7 @@ const express = require('express')
 const indexRoute = require('./routes/index')
 const pageRoute = require('./routes/page')
 const sectionRoute = require('./routes/section')
-const tipRoute = require('./routes/tips')
+const tipRoute = require('./routes/tip')
 const faqRoute = require('./routes/faq')
 const errorRoute = require('./routes/error')
 
