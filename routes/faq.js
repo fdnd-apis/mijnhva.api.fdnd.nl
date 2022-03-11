@@ -11,3 +11,12 @@ module.exports = express
             next(err)
         }
     })
+
+    .post('/', async (req, res, next) => {
+        try {
+            const faq = req.body
+            res.json(await Faq.create(faq))
+        } catch (err) {
+            next(err)
+        }
+    })

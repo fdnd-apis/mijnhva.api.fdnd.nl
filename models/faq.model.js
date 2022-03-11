@@ -13,4 +13,27 @@ faq.getAll = async function () {
     }
 }
 
+faq.create = async function (faq) {
+    const rows = db.query(
+        `INSERT INTO faq SET question = ?, answer = ?, question_id = ?`,
+        prepareForInsert(faq)
+    )
+
+    return {
+        data: [faq],
+        meta: {
+            affectedRows: rows.affectedRows,
+            changedRows: rows.changedRows,
+        }
+    }
+}
+
 module.exports = faq
+
+function prepareForInsert(faq) {
+    return [
+        faq.question,
+        faq.answer,
+        faq.question_id
+    ]
+}

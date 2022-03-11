@@ -11,3 +11,12 @@ module.exports = express
             next(err)
         }
     })
+
+    .post('/', async (req, res, next) => {
+        try {
+            const tip = req.body
+            res.json(await Tip.create(tip))
+        } catch (err) {
+            next(err)
+        }
+    })
