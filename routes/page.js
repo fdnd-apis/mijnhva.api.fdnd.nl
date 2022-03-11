@@ -29,3 +29,21 @@ module.exports = express
       next(err)
     }
   })
+
+  .delete('/', async (req, res, next)=>{
+    try {
+      const pageId = req.body.page_id
+      res.json(await Page.delete(pageId))
+    } catch (err) {
+      next(err)
+    }
+  })
+
+  .patch('/', async (req, res, next)=>{
+    try {
+      const page = req.body
+      res.json(await Page.update(page))
+    } catch (err) {
+      next(err)
+    }
+  })

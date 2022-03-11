@@ -39,6 +39,35 @@ page.create = async function(page) {
   }
 }
 
+page.delete = async function(pageId) {
+  const rows = await db.query(
+    `DELETE FROM page WHERE page_id = ?`,
+    [pageId]
+  )
+  return {
+    meta: { 
+      pageId,
+      affectedRows: rows.affectedRows,
+      changedRows: rows.changedRows,
+    }
+  }
+}
+
+page.update = async function(page) {
+  const rows = await db.query(
+    `UPDATE page SET title = ?, slug = ? WHERE page_id = ?`,
+    prepareForUpdate(page)
+  )
+  return {
+    data: { page },
+    meta: {
+      page_id: page.page_id,
+      affectedRows: rows.affectedRows,
+      changedRows: rows.changedRows,
+    }
+  }
+}
+
 module.exports = page
 
 function prepareForInsert(page) {
@@ -46,4 +75,8 @@ function prepareForInsert(page) {
     page.title,
     page.slug
   ]
+}
+
+function prepareForUpdate(page) {
+  return [...prepareForInsert(page), page.page_id]
 }

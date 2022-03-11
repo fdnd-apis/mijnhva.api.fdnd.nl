@@ -20,3 +20,21 @@ module.exports = express
       next(err)
     }
   })
+
+  .delete('/', async (req, res, next)=>{
+    try {
+      const sectionId = req.body.section_id
+      res.json(await Section.delete(sectionId))
+    } catch (err) {
+      next(err)
+    }
+  })
+
+  .patch('/', async (req, res, next)=>{
+    try {
+      const section = req.body
+      res.json(await Section.update(section))
+    } catch (err) {
+      next(err)
+    }
+  })

@@ -29,6 +29,35 @@ section.create = async function(section) {
   }
 }
 
+section.delete = async function(sectionId) {
+  const rows = await db.query(
+    `DELETE FROM section WHERE section_id = ?`,
+    [sectionId]
+  )
+  return {
+    meta: { 
+      sectionId,
+      affectedRows: rows.affectedRows,
+      changedRows: rows.changedRows,
+    }
+  }
+}
+
+section.update = async function(section) {
+  const rows = await db.query(
+    `UPDATE section SET title = ?, body = ?, page_id = ? WHERE section_id = ?`,
+    prepareForUpdate(section)
+  )
+  return {
+    data: { section },
+    meta: {
+      section_id: section.section_id,
+      affectedRows: rows.affectedRows,
+      changedRows: rows.changedRows,
+    }
+  }
+}
+
 module.exports = section
 
 function prepareForInsert(section) {
@@ -37,4 +66,8 @@ function prepareForInsert(section) {
     section.body,
     section.page_id
   ]
+}
+
+function prepareForUpdate(section) {
+  return [...prepareForInsert(section), section.section_id]
 }
