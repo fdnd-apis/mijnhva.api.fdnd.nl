@@ -15,7 +15,7 @@ faq.getAll = async function () {
 
 faq.create = async function (faq) {
     const rows = db.query(
-        `INSERT INTO faq SET question = ?, answer = ?, question_id = ?`,
+        `INSERT INTO faq SET question = ?, answer = ?`,
         prepareForInsert(faq)
     )
 
@@ -34,6 +34,5 @@ function prepareForInsert(faq) {
     return [
         faq.question,
         faq.answer,
-        faq.question_id
     ]
 }

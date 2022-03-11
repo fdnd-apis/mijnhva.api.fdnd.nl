@@ -15,7 +15,7 @@ tip.getAll = async function () {
 
 tip.create = async function (tip) {
     const rows = db.query(
-        `INSERT INTO tip SET title = ?, body = ?, tip_id = ?`,
+        `INSERT INTO tip SET title = ?, body = ?`,
         prepareForInsert(tip)
     )
 
@@ -34,6 +34,5 @@ function prepareForInsert(tip) {
     return [
         tip.title,
         tip.body,
-        tip.tip_id
     ]
 }
