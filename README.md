@@ -2,9 +2,7 @@
 
 [![JavaScript Style Guide][javascript-style-guide-badge]][standard]
 
-It's an API used by FDND. 
-
-[Read the documentation][docs].
+It's an API used by FDND for HvA. 
 
 ## License
 ![GNU GPL V3](https://www.gnu.org/graphics/gplv3-127x51.png)
