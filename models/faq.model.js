@@ -7,7 +7,9 @@ const faq = function (faq) {
 };
 
 faq.getAll = async function () {
-  const rows = await db.query(`SELECT * FROM faq`);
+  const rows = await db.query(
+    `SELECT * FROM faq INNER JOIN faq_category ON faq.faq_category_id = faq_category.faq_category_id`
+  );
   return {
     data: helper.emptyOrRows(rows),
   };
