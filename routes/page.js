@@ -21,7 +21,7 @@ module.exports = express
     }
   })
 
-  .get('/:slug', async (req, res, next)=>{
+  .get('/slug/:slug', async (req, res, next)=>{
     try {
       const slug = req.params.slug
       res.json(await Page.findBySlug(slug))
