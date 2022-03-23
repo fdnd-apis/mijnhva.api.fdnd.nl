@@ -15,6 +15,13 @@ section.getAll = async function() {
   }
 }
 
+section.getById = async function(id) {
+  const rows = await db.query(`SELECT * FROM section WHERE section_id = ?`, [id])
+  return {
+    data: helper.emptyOrRows(rows)
+  }
+}
+
 section.create = async function(section) {
   const rows = await db.query(
     `INSERT INTO section SET title = ?, body = ?, page_id = ?`,

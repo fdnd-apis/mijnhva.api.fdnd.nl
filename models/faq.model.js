@@ -15,6 +15,13 @@ faq.getAll = async function () {
   };
 };
 
+faq.getById = async function(id) {
+  const rows = await db.query(`SELECT * FROM section WHERE section_id = ?`, [id])
+  return {
+    data: helper.emptyOrRows(rows)
+  }
+}
+
 faq.create = async function (faq) {
   const rows = db.query(
     `INSERT INTO faq SET question = ?, answer = ?`,

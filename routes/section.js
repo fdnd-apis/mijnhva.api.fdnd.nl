@@ -12,6 +12,15 @@ module.exports = express
     }
   })
 
+  .get("/:id", async (req, res, next)=>{
+    try {
+      const id = req.params.id
+      res.json(await Section.getById(id))
+    } catch (err) {
+      next(err)
+    }
+  })
+
   .post('/', async (req, res, next)=>{
     try {
       const section = req.body

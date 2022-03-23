@@ -17,6 +17,13 @@ page.getAll = async function(page = 1) {
   }
 }
 
+page.getById = async function(id) {
+  const rows = await db.query(`SELECT * FROM page WHERE page_id = ?`, [id])
+  return {
+    data: helper.emptyOrRows(rows)
+  }
+}
+
 page.findBySlug = async function(slug) {
   const rows = await db.query(`SELECT section_id, section.title, body FROM section LEFT JOIN page ON page.page_id = section.page_id WHERE page.slug = ?`, [slug])
   return {

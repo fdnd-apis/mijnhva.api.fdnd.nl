@@ -12,6 +12,15 @@ module.exports = express
     }
   })
 
+  .get("/:id", async (req, res, next)=>{
+    try {
+      const id = req.params.id
+      res.json(await Page.getById(id))
+    } catch (err) {
+      next(err)
+    }
+  })
+
   .get('/:slug', async (req, res, next)=>{
     try {
       const slug = req.params.slug
