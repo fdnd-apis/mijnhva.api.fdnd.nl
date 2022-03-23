@@ -12,6 +12,15 @@ module.exports = express
     }
   })
 
+  .get("/:id", async (req, res, next)=>{
+    try {
+      const id = req.params.id
+      res.json(await Tip.getById(id))
+    } catch (err) {
+      
+    }
+  })
+
   .post("/", async (req, res, next) => {
     try {
       const tip = req.body;

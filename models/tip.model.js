@@ -13,6 +13,13 @@ tip.getAll = async function () {
   };
 };
 
+tip.getById = async function(id) {
+  const rows = await db.query(`SELECT * FROM tip WHERE tip_id=?`, [id])
+  return {
+    data: helper.emptyOrRows(rows)
+  }
+}
+
 tip.create = async function (tip) {
   const rows = db.query(
     `INSERT INTO tip SET title = ?, body = ?`,
