@@ -16,7 +16,7 @@ faq.getAll = async function () {
 };
 
 faq.getById = async function(id) {
-  const rows = await db.query(`SELECT * FROM section WHERE section_id = ?`, [id])
+  const rows = await db.query(`SELECT * FROM faq WHERE question_id = ?`, [id])
   return {
     data: helper.emptyOrRows(rows)
   }
@@ -24,7 +24,7 @@ faq.getById = async function(id) {
 
 faq.create = async function (faq) {
   const rows = db.query(
-    `INSERT INTO faq SET question = ?, answer = ?`,
+    `INSERT INTO faq SET question = ?, answer = ?, faq_category_id = ?`,
     prepareForInsert(faq)
   );
 
@@ -38,7 +38,7 @@ faq.create = async function (faq) {
 };
 
 faq.delete = async function (faqId) {
-  const rows = await db.query(`DELETE FROM faq WHERE faq_id = ?`, [faqId]);
+  const rows = await db.query(`DELETE FROM faq WHERE question_id = ?`, [faqId]);
   return {
     meta: {
       faqId,
@@ -50,7 +50,7 @@ faq.delete = async function (faqId) {
 
 faq.update = async function (faq) {
   const rows = await db.query(
-    `UPDATE faq SET question = ?, answer = ? WHERE faq_id = ?`,
+    `UPDATE faq SET question = ?, answer = ? WHERE question_id = ?`,
     perpareForUpdate(faq)
   );
   return {
